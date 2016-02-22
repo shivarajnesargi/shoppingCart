@@ -1,0 +1,58 @@
+<html ng-app="shoppingCartApp">
+	<head>
+		<title>Shopping Cart</title>
+		<link rel="stylesheet" type="text/css" href="/CSS/css/bootstrap.min.css"> </link>
+		<script src="/JS/angular.min.js"> </script>
+		<script src="/JS/angular-route.min.js"> </script>
+		<script src="/controllers/shoppingCartController.js"> </script>
+	</head>
+	<body>
+		<div class="container" ng-controller="shoppingCartController">
+			<h3>SHOPPING CART</h3>
+			<br />
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Item</th>
+						<th>Quantity</th>
+						<th>Price</th>
+						<th>Action</th>
+						<th>&nbsp</th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr>
+						<td>
+							<input class="form-control"  ng-model="cart.item" />
+						</td>
+						<td>
+							<input class="form-control" placeholder="0" type="number" min="1" step="1" type="text" ng-model="cart.quantity" />
+						</td>
+						<td>
+							<input class="form-control" type="number" ng-model="cart.price" />
+						</td>
+						<td>
+							<button class="btn btn-primary" ng-click="addCart()">Add to cart</button>
+						</td>
+						<td>
+							<button class="btn btn-info" ng-click="updateCart()">Update cart</button>
+						</td>
+					</tr>
+					<tr ng-repeat="carts in cartList">
+						<td>{{carts.item}}</td>
+						<td>{{carts.quantity}}</td>
+						<td>{{carts.price|currency:"&euro;"}}</td>
+						<td><button class="btn btn-danger" ng-click="deleteCart(carts._id)">Remove </button> </td>
+						<td><button class="btn btn-warning" ng-click="editCart(carts._id)">Edit</td> </button> </td>
+					</tr>
+					<tr>
+						<td><label>Total</label></td>
+						<td></td>
+						<td><label>{{total|currency:"&euro;"}}</label></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
